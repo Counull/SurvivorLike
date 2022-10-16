@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 9132832536761082797}
   - component: {fileID: 8765359296094965677}
   - component: {fileID: -3114213088707463776}
+  - component: {fileID: 7339392813594646046}
   - component: {fileID: 7503778434828499623}
-  m_Layer: 0
+  - component: {fileID: 6955750557676205657}
+  m_Layer: 6
   m_Name: PFGrass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,6 +108,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7339392813594646046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4331307297609962461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2112f0d8d5854f7b984e178156b625d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &7503778434828499623
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -151,3 +165,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.46875, y: 0.34375}
   m_EdgeRadius: 0
+--- !u!114 &6955750557676205657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4331307297609962461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93cc6a4987f7c684798156c56d545838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _map: {fileID: 0}
+  maxSpeed: 3.5
+  mass: 20
+  stoppingDistance: 0.1
+  slowingDistance: 1
+  accelerationRate: 2
+  decelerationRate: 2
+  lookAheadDistance: 1
+  avoidRadius: 0
+  centerOffset: {x: 0, y: 0}
+  rotateTransform: 0
+  rotateSpeed: 350
+  repath: 1
+  restrict: 0
+  closerPointOnInvalid: 1
+  debugPath: 1

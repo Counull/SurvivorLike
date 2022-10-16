@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 2055102311959635375}
   - component: {fileID: 2055102311959635368}
   - component: {fileID: 7752385290848369335}
+  - component: {fileID: 6721331796940738070}
   - component: {fileID: 5135554832283255569}
-  m_Layer: 20
+  - component: {fileID: 4596684752585557520}
+  m_Layer: 6
   m_Name: PFBush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,6 +109,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6721331796940738070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055102311959635369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2112f0d8d5854f7b984e178156b625d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &5135554832283255569
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -152,6 +166,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.84375, y: 0.78125}
   m_EdgeRadius: 0
+--- !u!114 &4596684752585557520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055102311959635369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93cc6a4987f7c684798156c56d545838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _map: {fileID: 0}
+  maxSpeed: 3.5
+  mass: 20
+  stoppingDistance: 0.1
+  slowingDistance: 1
+  accelerationRate: 2
+  decelerationRate: 2
+  lookAheadDistance: 1
+  avoidRadius: 0
+  centerOffset: {x: 0, y: 0}
+  rotateTransform: 0
+  rotateSpeed: 350
+  repath: 1
+  restrict: 0
+  closerPointOnInvalid: 1
+  debugPath: 1
 --- !u!1 &2055102312182832482
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2055102312182832481}
   - component: {fileID: 2055102312182832480}
-  m_Layer: 20
+  m_Layer: 6
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

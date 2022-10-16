@@ -37,9 +37,9 @@ namespace GameController {
             foreach (var c in CoroutineList) {
                 StartCoroutine(c);
             }
+
             CoroutineList.Clear();
         }
-        
 
 
         public IArchitecture GetArchitecture() {

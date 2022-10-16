@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Models {
     public class EnemyModel : AbstractModel {
+        //应该有个enum EnemyType 然后这里放HashMap
         public BindableProperty<List<BaseEnemyData>> enemyData;
 
         protected override void OnInit() {

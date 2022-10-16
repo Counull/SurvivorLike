@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Behavior;
 using Models;
 using QFramework;
 using UnityEngine;
@@ -29,8 +30,9 @@ namespace GameSystem {
             Vector2 randomPosition = (Vector2) playerModel.playerPosition.Value +
                                      RandomPosition(playerModel.cleanAreaSqr, playerModel.enemySpawnArea);
             var enemyModel = this.GetModel<EnemyModel>();
-           var enemy= Object.Instantiate(enemyModel.enemyData.Value[index].Prefab, randomPosition, Quaternion.identity);
-         
+            var enemy = Object.Instantiate(enemyModel.enemyData.Value[index].Prefab, randomPosition,
+                Quaternion.identity);
+            enemy.GetComponent<EnemyBehavior>().Init(index);
         }
 
         Vector2 RandomPosition(float cleanAreaSqr, float enemySpawnArea) {
@@ -62,5 +64,8 @@ namespace GameSystem {
                 yield return new WaitForSeconds(2);
             }
         }
+        
+       
+        
     }
 }

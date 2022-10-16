@@ -53,6 +53,8 @@ namespace Command {
             playerModel.playerSpeed.Value = _playerPlayerData.PlayerSpeed;
             playerModel.cleanAreaSqr.Value = _playerPlayerData.CleanArea * _playerPlayerData.CleanArea;
             playerModel.enemySpawnArea.Value = _playerPlayerData.EnemySpawnArea;
+            playerModel.playerMaxHealth.Value = _playerPlayerData.PlayerMaxHealth;
+            playerModel.playerCurrentHealth.Value = _playerPlayerData.PlayerCurrentHealth;
             _playerPlayerData.Destroy();
         }
     }

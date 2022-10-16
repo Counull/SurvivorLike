@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 2055102311959635375}
   - component: {fileID: 2055102311959635374}
   - component: {fileID: -4577280588837426199}
-  m_Layer: 20
+  - component: {fileID: 3812915113265836115}
+  - component: {fileID: 4077931522700421042}
+  m_Layer: 6
   m_Name: PFTree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,6 +103,46 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3812915113265836115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055102311959635369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2112f0d8d5854f7b984e178156b625d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4077931522700421042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055102311959635369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93cc6a4987f7c684798156c56d545838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _map: {fileID: 0}
+  maxSpeed: 3.5
+  mass: 20
+  stoppingDistance: 0.1
+  slowingDistance: 1
+  accelerationRate: 2
+  decelerationRate: 2
+  lookAheadDistance: 1
+  avoidRadius: 0
+  centerOffset: {x: 0, y: 0}
+  rotateTransform: 0
+  rotateSpeed: 350
+  repath: 1
+  restrict: 0
+  closerPointOnInvalid: 1
+  debugPath: 1
 --- !u!1 &2055102312182832482
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2055102312182832481}
   - component: {fileID: 2055102312182832480}
-  m_Layer: 20
+  m_Layer: 6
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6880079008103839969}
   - component: {fileID: 2444991506894079395}
-  m_Layer: 20
+  m_Layer: 6
   m_Name: Upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +321,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3490479345217099410}
   - component: {fileID: 4370152849212869299}
-  m_Layer: 20
+  m_Layer: 6
   m_Name: Lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}

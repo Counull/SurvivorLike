@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5628018140324151391}
   - component: {fileID: 5628018140324151390}
-  m_Layer: 20
+  m_Layer: 7
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 5628018141983903116}
   - component: {fileID: 5628018141983903117}
   - component: {fileID: 4616719885696106401}
-  m_Layer: 20
+  m_Layer: 7
   m_Name: PFPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}

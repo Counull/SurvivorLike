@@ -67,7 +67,7 @@ public class PolyNav2D : MonoBehaviour {
 		navObstacles = FindObjectsOfType<PolyNavObstacle>().Where( o => obstaclesMask == (obstaclesMask | 1 << o.gameObject.layer) ).ToList();
 		PolyNavObstacle.OnObstacleStateChange += MonitorObstacle;
 		if (masterCollider != null){
-			masterCollider.enabled = false;
+				masterCollider.enabled = false;
 			GenerateMap(true);
 		}
 	}
