@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Command;
+using EnemyData;
 using GameSystem;
 using Models;
 using QFramework;
@@ -19,8 +20,11 @@ namespace GameController {
 
 
         void Start() {
-            this.SendCommand(new DataLoadCommand(GetComponentInChildren<ILevelData>()));
+            var playerData = GetComponentInChildren<IPlayerData>();
+            var enemyData = GetComponentsInChildren<IEnemyData>();
+            this.SendCommand(new DataLoadCommand(playerData, enemyData));
             this.SendCommand(new GameStartCommand());
+            //  StartCoroutine()
         }
 
         private void Update() {
@@ -39,7 +43,9 @@ namespace GameController {
             this.RegisterSystem(new GameSystem.GameSystem());
             this.RegisterSystem(new PlayerSystem());
             this.RegisterSystem(new MainCameraSystem());
+            this.RegisterSystem(new EnemySystem());
             this.RegisterModel(new PlayerModels());
+            this.RegisterModel(new EnemyModel());
             this.RegisterUtility(new PlayerStorage());
         }
     }

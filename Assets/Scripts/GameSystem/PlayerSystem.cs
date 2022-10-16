@@ -17,6 +17,7 @@ namespace GameSystem {
             player = Object.Instantiate<GameObject>(playerModel.playerPrefab.Value, playerModel.playerSpawnPoint.Value,
                 Quaternion.identity);
             animator = player.GetComponent<Animator>();
+            playerModel.playerPosition.Value = player.transform.position;
             this.SendEvent<PlayerSpawnComplete>(new PlayerSpawnComplete() {player = this.player});
             GameController.GameController.AddUpdateAction(PlayerMove);
         }
