@@ -7,7 +7,7 @@ namespace Command {
     public class DataLoadCommand : AbstractCommand {
         private ILevelData _levelData;
 
-      public  DataLoadCommand(ILevelData data) {
+        public DataLoadCommand(ILevelData data) {
             _levelData = data;
         }
 
@@ -19,8 +19,12 @@ namespace Command {
             if (prefab == null) {
                 throw new Exception("prefab not loaded");
             }
+
             playerModel.playerPrefab.Value = prefab;
             playerModel.playerSpawnPoint.Value = _levelData.PlayerSpawnPoint;
+            playerModel.playerSpeed.Value = _levelData.PlayerSpeed;
+
+            _levelData.Destroy();
         }
     }
 }

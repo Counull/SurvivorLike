@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.InteropServices;
 using Command;
 using GameSystem;
@@ -10,13 +11,22 @@ using UnityEngine.UIElements;
 namespace GameController {
     public class GameController : MonoBehaviour, IController {
         // Start is called before the first frame update
+
+
+        private static Action mUpdateAction;
+        public static void AddUpdateAction(Action fun) => mUpdateAction += fun;
+        public static void RemoveUpdateAction(Action fun) => mUpdateAction -= fun;
+
+
         void Start() {
             this.SendCommand(new DataLoadCommand(GetComponentInChildren<ILevelData>()));
             this.SendCommand(new GameStartCommand());
         }
 
-        // Update is called once per frame
-        void Update() { }
+        private void Update() {
+            mUpdateAction?.Invoke();
+        }
+
 
         public IArchitecture GetArchitecture() {
             return GameArchitecture.Interface;
@@ -28,6 +38,7 @@ namespace GameController {
         protected override void Init() {
             this.RegisterSystem(new GameSystem.GameSystem());
             this.RegisterSystem(new PlayerSystem());
+            this.RegisterSystem(new MainCameraSystem());
             this.RegisterModel(new PlayerModels());
             this.RegisterUtility(new PlayerStorage());
         }

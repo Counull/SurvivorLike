@@ -10,9 +10,9 @@ namespace Models {
 
         public BindableProperty<Vector2> playerSpawnPoint = new BindableProperty<Vector2>();
         public BindableProperty<GameObject> playerPrefab = new BindableProperty<GameObject>();
-
+        public BindableProperty<float> playerSpeed = new BindableProperty<float>();
         protected override void OnInit() {
-            //    var storage = this.GetUtility<PlayerStorage>();
+         
         }
     }
 }
