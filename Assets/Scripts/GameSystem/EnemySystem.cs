@@ -16,7 +16,7 @@ namespace GameSystem {
             float random = Random.value;
 
             for (int type = 0; type < spawnRnadom.Count; type++) {
-                if (random < spawnRnadom[type]) {
+                if (random <= spawnRnadom[type]) {
                     SpawnEnemy(type);
                     break;
                 }
@@ -29,7 +29,8 @@ namespace GameSystem {
             Vector2 randomPosition = (Vector2) playerModel.playerPosition.Value +
                                      RandomPosition(playerModel.cleanAreaSqr, playerModel.enemySpawnArea);
             var enemyModel = this.GetModel<EnemyModel>();
-            Object.Instantiate(enemyModel.enemyData.Value[index].Prefab, randomPosition, Quaternion.identity);
+           var enemy= Object.Instantiate(enemyModel.enemyData.Value[index].Prefab, randomPosition, Quaternion.identity);
+         
         }
 
         Vector2 RandomPosition(float cleanAreaSqr, float enemySpawnArea) {

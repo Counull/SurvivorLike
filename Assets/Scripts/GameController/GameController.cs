@@ -39,9 +39,8 @@ namespace GameController {
             }
             CoroutineList.Clear();
         }
-
         
-       
+
 
         public IArchitecture GetArchitecture() {
             return GameArchitecture.Interface;

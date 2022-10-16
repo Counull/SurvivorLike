@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Serialization;
-
+//遇到碰撞器还是得往怪物上贴MonoBehavior 纯纯小丑代码 CNM
 namespace EnemyData {
     public interface IEnemyData {
         BaseEnemyData Data { get; }
