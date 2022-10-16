@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Command;
 using EnemyData;
@@ -6,6 +8,7 @@ using GameSystem;
 using Models;
 using QFramework;
 using Storage;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,24 +16,32 @@ namespace GameController {
     public class GameController : MonoBehaviour, IController {
         // Start is called before the first frame update
 
+        static readonly List<IEnumerator> CoroutineList = new List<IEnumerator>(1);
+        private static Action _mUpdateAction;
+        public static void AddUpdateAction(Action fun) => _mUpdateAction += fun;
+        public static void RemoveUpdateAction(Action fun) => _mUpdateAction -= fun;
 
-        private static Action mUpdateAction;
-        public static void AddUpdateAction(Action fun) => mUpdateAction += fun;
-        public static void RemoveUpdateAction(Action fun) => mUpdateAction -= fun;
-
+        public static void QueueCoroutine(IEnumerator enumerator) {
+            CoroutineList.Add(enumerator);
+        }
 
         void Start() {
             var playerData = GetComponentInChildren<IPlayerData>();
             var enemyData = GetComponentsInChildren<IEnemyData>();
             this.SendCommand(new DataLoadCommand(playerData, enemyData));
             this.SendCommand(new GameStartCommand());
-            //  StartCoroutine()
         }
 
         private void Update() {
-            mUpdateAction?.Invoke();
+            _mUpdateAction?.Invoke();
+            foreach (var c in CoroutineList) {
+                StartCoroutine(c);
+            }
+            CoroutineList.Clear();
         }
 
+        
+       
 
         public IArchitecture GetArchitecture() {
             return GameArchitecture.Interface;

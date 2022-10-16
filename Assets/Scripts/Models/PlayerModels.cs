@@ -12,9 +12,9 @@ namespace Models {
         public BindableProperty<GameObject> playerPrefab = new BindableProperty<GameObject>();
         public BindableProperty<float> playerSpeed = new BindableProperty<float>();
         public BindableProperty<Vector3> playerPosition = new BindableProperty<Vector3>();
-        
-        protected override void OnInit() {
-         
-        }
+
+        public BindableProperty<float> cleanAreaSqr = new BindableProperty<float>();
+        public BindableProperty<float> enemySpawnArea = new BindableProperty<float>();
+        protected override void OnInit() { }
     }
 }

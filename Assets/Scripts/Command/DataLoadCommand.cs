@@ -23,11 +23,18 @@ namespace Command {
 
         void LoadEnemyData() {
             var enemyModel = this.GetModel<EnemyModel>();
+
+            float total = 0.0f;
+            foreach (var vEnemyData in _enemyData) {
+                total += vEnemyData.Data.SpawnRatio;
+            }
+
             foreach (var vEnemyData in _enemyData) {
                 var baseEnemyData = vEnemyData.Data;
-                var prefab = Resources.Load<GameObject>(vEnemyData.PrefabPah);
+                var prefab = Resources.Load<GameObject>(vEnemyData.PrefabPath);
                 baseEnemyData.Prefab = prefab;
                 enemyModel.enemyData.Value.Add(baseEnemyData);
+                vEnemyData.Data.SpawnRatio /= total;
                 vEnemyData.Destroy();
             }
         }
@@ -44,7 +51,8 @@ namespace Command {
             playerModel.playerPrefab.Value = prefab;
             playerModel.playerSpawnPoint.Value = _playerPlayerData.PlayerSpawnPoint;
             playerModel.playerSpeed.Value = _playerPlayerData.PlayerSpeed;
-
+            playerModel.cleanAreaSqr.Value = _playerPlayerData.CleanArea * _playerPlayerData.CleanArea;
+            playerModel.enemySpawnArea.Value = _playerPlayerData.EnemySpawnArea;
             _playerPlayerData.Destroy();
         }
     }

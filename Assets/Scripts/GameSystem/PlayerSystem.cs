@@ -47,6 +47,7 @@ namespace GameSystem {
             animator.SetBool("IsMoving", dir.magnitude > 0);
 
             player.GetComponent<Rigidbody2D>().velocity = playerModel.playerSpeed * dir;
+            playerModel.playerPosition.Value = player.transform.position;
         }
     }
 }

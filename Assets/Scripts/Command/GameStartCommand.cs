@@ -8,6 +8,6 @@ public class GameStartCommand : AbstractCommand {
         var playerSystem = this.GetSystem<PlayerSystem>();
         playerSystem.SpawnPlayer();
         var enemySystem = this.GetSystem<EnemySystem>();
-        enemySystem.SpawnEnemy();
+        enemySystem.StartSpanEnemy();
     }
 }

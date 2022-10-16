@@ -7,7 +7,7 @@ namespace EnemyData {
         BaseEnemyData Data { get; }
         BaseHealerData HealingData { get; }
 
-        string PrefabPah { get; }
+        string PrefabPath { get; }
         void Destroy();
     }
 

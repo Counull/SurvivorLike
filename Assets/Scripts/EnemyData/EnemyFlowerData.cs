@@ -9,9 +9,9 @@ namespace EnemyData {
         public BaseEnemyData Data => _baseEnemyData;
 
         public BaseHealerData HealingData => _baseHealerData;
-        public string PrefabPah => prefabPath;
+        public string PrefabPath => prefabPath;
         public void Destroy() {
-            GameObject.Destroy(this);
+            GameObject.Destroy(gameObject);
         }
     }
 }

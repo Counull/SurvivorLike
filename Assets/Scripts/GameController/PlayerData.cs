@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GameController {
     public interface IPlayerData {
@@ -8,9 +9,10 @@ namespace GameController {
         string PlayerPrefabPath { get; }
         float PlayerSpeed { get; }
 
+        float CleanArea { get; }
 
-   
-    
+        float EnemySpawnArea { get; }
+
         void Destroy();
     }
 
@@ -18,15 +20,19 @@ namespace GameController {
         [SerializeField] private Vector2 playerSpawnPoint;
         [SerializeField] private string playerPrefabPath;
         [SerializeField] private float playerSpeed;
-     
-        
+        [SerializeField] private float cleanArea;
+        [SerializeField] private float enemySpawnArea;
         public Vector2 PlayerSpawnPoint => playerSpawnPoint;
         public string PlayerPrefabPath => playerPrefabPath;
 
         public float PlayerSpeed => playerSpeed;
+        public float CleanArea => cleanArea;
+        public float EnemySpawnArea => enemySpawnArea;
+
 
         public void Destroy() {
-            GameObject.Destroy(this);
+            GameObject.Destroy(gameObject);
+            //  GameObject.Destroy(this);
         }
     }
 }
