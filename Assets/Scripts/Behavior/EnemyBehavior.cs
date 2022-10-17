@@ -19,7 +19,8 @@ namespace Behavior {
             this._type = type;
             var enemyMode = this.GetModel<EnemyModel>();
             _property = enemyMode.enemyData.Value[type];
-            StartCoroutine(nameof(AutoFollowPlayer));
+
+            GameController.QueueCoroutine(AutoFollowPlayer());
         }
 
 
@@ -29,14 +30,18 @@ namespace Behavior {
             }
         }
 
+
+//这里实现代码属实不太明智
         IEnumerator AutoFollowPlayer() {
             following = true;
 
             var agent = GetComponent<PolyNavAgent>();
+            agent.maxSpeed = _property.Speed;
             while (following) {
-                var target = this.GetModel<PlayerModels>().playerPosition.Value;
+                var target = this.GetModel<PlayerModel>().playerPosition.Value;
+
                 agent.SetDestination(target);
-                yield return new WaitForSeconds(0.7f);
+                yield return new WaitForSeconds(1f);
             }
         }
     }

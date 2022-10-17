@@ -10,14 +10,14 @@ namespace GameSystem {
 
         private GameObject player;
         private Animator animator;
-        private PlayerModels playerModel;
+        private PlayerModel _playerModel;
 
         public void SpawnPlayer() {
-            playerModel = this.GetModel<PlayerModels>();
-            player = Object.Instantiate<GameObject>(playerModel.playerPrefab.Value, playerModel.playerSpawnPoint.Value,
+            _playerModel = this.GetModel<PlayerModel>();
+            player = Object.Instantiate<GameObject>(_playerModel.playerPrefab.Value, _playerModel.playerSpawnPoint.Value,
                 Quaternion.identity);
             animator = player.GetComponent<Animator>();
-            playerModel.playerPosition.Value = player.transform.position;
+            _playerModel.playerPosition.Value = player.transform.position;
             this.SendEvent<PlayerSpawnComplete>(new PlayerSpawnComplete() {player = this.player});
             GameController.GameController.AddUpdateAction(PlayerMove);
         }
@@ -46,8 +46,8 @@ namespace GameSystem {
             dir.Normalize();
             animator.SetBool("IsMoving", dir.magnitude > 0);
 
-            player.GetComponent<Rigidbody2D>().velocity = playerModel.playerSpeed * dir;
-            playerModel.playerPosition.Value = player.transform.position;
+            player.GetComponent<Rigidbody2D>().velocity = _playerModel.playerSpeed * dir;
+            _playerModel.playerPosition.Value = player.transform.position;
         }
     }
 }

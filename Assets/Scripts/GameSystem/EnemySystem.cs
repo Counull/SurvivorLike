@@ -13,20 +13,35 @@ namespace GameSystem {
             IEnumerator autoSpawnEnemy = AutoSpawnEnemy();
         }
 
-        public void SpawnEnemy() {
+
+        public void StartSpanEnemy() {
+            var enemyList = this.GetModel<EnemyModel>().enemyData.Value;
+
+            spawnRnadom = new List<float>(enemyList.Count);
+            float total = 0.0f;
+            foreach (var enemyData in enemyList) {
+                total += enemyData.SpawnRatio;
+                spawnRnadom.Add(total);
+            }
+
+            GameController.GameController.QueueCoroutine(AutoSpawnEnemy());
+        }
+
+
+        public void RandomSpawnEnemy() {
             float random = Random.value;
 
             for (int type = 0; type < spawnRnadom.Count; type++) {
                 if (random <= spawnRnadom[type]) {
-                    SpawnEnemy(type);
+                    SpawnEnemyRandomPosition(type);
                     break;
                 }
             }
         }
 
 
-        public void SpawnEnemy(int index) {
-            var playerModel = this.GetModel<PlayerModels>();
+        public void SpawnEnemyRandomPosition(int index) {
+            var playerModel = this.GetModel<PlayerModel>();
             Vector2 randomPosition = (Vector2) playerModel.playerPosition.Value +
                                      RandomPosition(playerModel.cleanAreaSqr, playerModel.enemySpawnArea);
             var enemyModel = this.GetModel<EnemyModel>();
@@ -45,27 +60,12 @@ namespace GameSystem {
             return randomPoint;
         }
 
-        public void StartSpanEnemy() {
-            var enemyList = this.GetModel<EnemyModel>().enemyData.Value;
-
-            spawnRnadom = new List<float>(enemyList.Count);
-            float total = 0.0f;
-            foreach (var enemyData in enemyList) {
-                total += enemyData.SpawnRatio;
-                spawnRnadom.Add(total);
-            }
-
-            GameController.GameController.QueueCoroutine(AutoSpawnEnemy());
-        }
 
         IEnumerator AutoSpawnEnemy() {
             while (true) {
-                SpawnEnemy();
+                RandomSpawnEnemy();
                 yield return new WaitForSeconds(2);
             }
         }
-        
-       
-        
     }
 }

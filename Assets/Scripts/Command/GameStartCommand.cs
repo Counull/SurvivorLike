@@ -5,9 +5,9 @@ using QFramework;
 
 public class GameStartCommand : AbstractCommand {
     protected override void OnExecute() {
-        var playerSystem = this.GetSystem<PlayerSystem>();
-        playerSystem.SpawnPlayer();
-        var enemySystem = this.GetSystem<EnemySystem>();
-        enemySystem.StartSpanEnemy();
+        this.GetSystem<SurrounderSystem>()?.Start();
+        this.GetSystem<PlayerSystem>()?.SpawnPlayer();
+        this.GetSystem<EnemySystem>()?.StartSpanEnemy();
+        this.GetSystem<ShooterSystem>()?.Start();
     }
 }

@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using Command;
 using EnemyData;
 using GameSystem;
+using LevelData.WeaponData;
 using Models;
 using QFramework;
 using Storage;
@@ -28,17 +29,18 @@ namespace GameController {
         void Start() {
             var playerData = GetComponentInChildren<IPlayerData>();
             var enemyData = GetComponentsInChildren<IEnemyData>();
-            this.SendCommand(new DataLoadCommand(playerData, enemyData));
+            var weaponData = GetComponentsInChildren<IWeaponData>();
+            //这里其实可以用一个公用的接口依靠type区分
+            this.SendCommand(new DataLoadCommand(playerData, enemyData, weaponData));
             this.SendCommand(new GameStartCommand());
         }
 
         private void Update() {
             _mUpdateAction?.Invoke();
-            foreach (var c in CoroutineList) {
-                StartCoroutine(c);
+            while (CoroutineList.Count != 0) {
+                StartCoroutine(CoroutineList[0]);
+                CoroutineList.RemoveAt(0);
             }
-
-            CoroutineList.Clear();
         }
 
 
@@ -54,8 +56,9 @@ namespace GameController {
             this.RegisterSystem(new PlayerSystem());
             this.RegisterSystem(new MainCameraSystem());
             this.RegisterSystem(new EnemySystem());
-            this.RegisterModel(new PlayerModels());
+            this.RegisterModel(new PlayerModel());
             this.RegisterModel(new EnemyModel());
+            this.RegisterModel(new WeaponModel());
             this.RegisterUtility(new PlayerStorage());
         }
     }

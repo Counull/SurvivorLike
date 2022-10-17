@@ -12,7 +12,7 @@ namespace Command {
         }
 
         protected override void OnExecute() {
-            var playerModels = this.GetModel<PlayerModels>();
+            var playerModels = this.GetModel<PlayerModel>();
             playerModels.playerCurrentHealth.Value -= damage;
             Debug.Log("Player get hurt:" + damage);
             if (playerModels.playerCurrentHealth < float.Epsilon) {

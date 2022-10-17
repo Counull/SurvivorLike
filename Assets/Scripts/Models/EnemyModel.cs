@@ -10,7 +10,7 @@ namespace Models {
 
         protected override void OnInit() {
             enemyData = new BindableProperty<List<BaseEnemyData>>();
-            enemyData.Value = new List<BaseEnemyData>();
+            enemyData.SetValueWithoutEvent(new List<BaseEnemyData>());
         }
     }
 }
