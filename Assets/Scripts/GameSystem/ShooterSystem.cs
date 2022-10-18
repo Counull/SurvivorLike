@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using LevelData.WeaponData;
 using Models;
 using QFramework;
 using UnityEngine;
 
 namespace GameSystem {
-    public class ShooterSystem : IWeaponSystem {
+    public class ShooterSystem : AbstractWeaponSystem {
         public ShooterSystem(List<int> weaponIndex) : base(weaponIndex) { }
 
         protected override void OnInit() { }
@@ -13,10 +14,10 @@ namespace GameSystem {
 
         public override void Start() {
             shouldStop = false;
-           var weaponModel= this.GetModel<WeaponModel>();
+            var weaponModel = this.GetModel<WeaponModel>();
             foreach (var index in weaponIndex) {
-               var prefab= weaponModel.prefabList.Value[index];
-               GameController.GameController.QueueCoroutine(AutoShoot(prefab,1));
+                var weaponData = weaponModel.WeaponData.Value[index];
+                GameController.GameController.QueueCoroutine(AutoShoot((ShooterWeaponData) weaponData));
             }
         }
 
@@ -25,11 +26,16 @@ namespace GameSystem {
         }
 
 
-        IEnumerator AutoShoot(GameObject prefab, float interval) {
+        IEnumerator AutoShoot(ShooterWeaponData weaponData) {
             while (!shouldStop) {
                 var position = this.GetModel<PlayerModel>().playerPosition.Value;
-                GameObject.Instantiate(prefab,position,Quaternion.identity);
-                yield return new WaitForSeconds(interval);
+                for (int i = 0; i < weaponData.Count - 1; i++) {
+                    Object.Instantiate(weaponData.Prefab, position, Quaternion.identity);
+                    yield return new WaitForSeconds(weaponData.ContinuousFireInterval);
+                }
+
+                Object.Instantiate(weaponData.Prefab, position, Quaternion.identity);
+                yield return new WaitForSeconds(weaponData.ShootInterval);
             }
         }
     }

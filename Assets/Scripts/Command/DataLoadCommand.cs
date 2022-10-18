@@ -6,6 +6,7 @@ using GameSystem;
 using LevelData.WeaponData;
 using Models;
 using QFramework;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Command {
@@ -35,16 +36,20 @@ namespace Command {
             List<int> shooterIndexList = new List<int>(_weaponData.Length);
 
             for (int i = 0; i < _weaponData.Length; i++) {
-                var prefab = Resources.Load<GameObject>(_weaponData[i].PrefabPath);
+                var data = _weaponData[i];
+                var prefab = Resources.Load<GameObject>(data.PrefabPath);
                 if (prefab == null) {
+                    Debug.LogWarning("Prefab path not fount:" + data.PrefabPath);
                     continue;
                 }
 
-                weaponModel.prefabList.Value.Add(prefab);
-                int currentIndex = weaponModel.prefabList.Value.Count - 1;
-                var type = _weaponData[currentIndex].WeaponType;
 
-                switch (type) {
+                var weaponData = data.BaseWeaponData;
+                weaponData.Prefab = prefab;
+                var weaponModelData = weaponModel.WeaponData.Value;
+                weaponModelData.Add(weaponData);
+                int currentIndex = weaponModelData.Count - 1;
+                switch (weaponData.WeaponType) {
                     case WeaponType.Shooter:
                         shooterIndexList.Add(currentIndex);
                         break;

@@ -2,10 +2,10 @@
 using QFramework;
 
 namespace GameSystem {
-    public abstract class IWeaponSystem : AbstractSystem {
+    public abstract class AbstractWeaponSystem : AbstractSystem {
         protected List<int> weaponIndex;
         protected bool shouldStop;
-        public IWeaponSystem(List<int> weaponIndex) {
+        public AbstractWeaponSystem(List<int> weaponIndex) {
             weaponIndex.Capacity = weaponIndex.Count;
             this.weaponIndex = weaponIndex;
         }

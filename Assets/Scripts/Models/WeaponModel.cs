@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
+using LevelData.WeaponData;
 using QFramework;
 using UnityEngine;
 
 namespace Models {
     public class WeaponModel : AbstractModel {
-        public BindableProperty<List<GameObject>> prefabList;
-
+        public BindableProperty<List<BaseWeaponData>> WeaponData;
+        
 
         protected override void OnInit() {
-            prefabList = new BindableProperty<List<GameObject>>();
-            prefabList.SetValueWithoutEvent(new List<GameObject>());
+            WeaponData = new BindableProperty<List<BaseWeaponData>>();
+            WeaponData.SetValueWithoutEvent(new List<BaseWeaponData>());
         }
     }
 }
