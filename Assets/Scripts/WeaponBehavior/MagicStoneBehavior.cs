@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections;
 using GameController;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace WeaponBehavior {
+    [ShowInInspector]
     public class MagicStoneBehavior : WeaponController {
-        public float angularVelocity;
+        [ShowInInspector] public float _angularVelocity;
 
 
         private void Start() {
@@ -14,22 +16,9 @@ namespace WeaponBehavior {
 
         IEnumerator Surround() {
             while (true) {
-                transform.localPosition = Quaternion.AngleAxis(angularVelocity * Time.deltaTime,Vector3.forward) *
+                transform.localPosition = Quaternion.AngleAxis(_angularVelocity * Time.deltaTime, Vector3.forward) *
                                           transform.localPosition;
                 yield return null;
-            }
-        }
-
-
-        private void OnCollisionEnter2D(Collision2D col) {
-            if (col.gameObject.CompareTag("Enemy")) {
-                Debug.Log(col.gameObject.name + "get hurt");
-            }
-        }
-
-        private void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.CompareTag("Enemy")) {
-                Debug.Log(col.gameObject.name + "get hurt");
             }
         }
     }

@@ -273,7 +273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c60540ae9b504bd595a6345b3a1d796d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angularVelocity: 120
+  damage: 3
+  _angularVelocity: 180
 --- !u!1 &5055698510374027886
 GameObject:
   m_ObjectHideFlags: 0

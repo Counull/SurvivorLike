@@ -1,10 +1,11 @@
 ﻿
     using UnityEngine;
+    using UnityEngine.Serialization;
 
     namespace EnemyData {
         public class EnemyGrassData:MonoBehaviour ,IEnemyData{
-           [SerializeField] private BaseEnemyData _baseEnemyData;
-           public BaseEnemyData Data => _baseEnemyData;
+           [FormerlySerializedAs("_baseEnemyData")] [SerializeField] private EnemyTypeData enemyTypeData;
+           public EnemyTypeData TypeData => enemyTypeData;
            [SerializeField] string prefabPath;
            public BaseHealerData HealingData => null;
            public string PrefabPath => prefabPath;

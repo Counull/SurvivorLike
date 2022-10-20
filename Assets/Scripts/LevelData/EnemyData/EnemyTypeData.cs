@@ -4,7 +4,7 @@ using UnityEngine.Serialization;
 //遇到碰撞器还是得往怪物上贴MonoBehavior 纯纯小丑代码 CNM
 namespace EnemyData {
     public interface IEnemyData {
-        BaseEnemyData Data { get; }
+        EnemyTypeData TypeData { get; }
         BaseHealerData HealingData { get; }
 
         string PrefabPath { get; }
@@ -13,7 +13,7 @@ namespace EnemyData {
 
 
     [System.Serializable]
-    public  class BaseEnemyData {
+    public  class EnemyTypeData {
         public float Speed {
             get => speed;
             set => speed = value;

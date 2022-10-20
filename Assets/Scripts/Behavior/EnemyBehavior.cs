@@ -12,14 +12,14 @@ namespace Behavior {
 
     public class EnemyBehavior : EnemyController {
         private int _type;
-        private BaseEnemyData _property;
+        private EnemyTypeData _property;
         private bool following = false;
 
+        
         public void Init(int type) {
             this._type = type;
             var enemyMode = this.GetModel<EnemyModel>();
-            _property = enemyMode.enemyData.Value[type];
-
+            _property = enemyMode.enemyTypeData.Value[type];
             GameController.QueueCoroutine(AutoFollowPlayer());
         }
 

@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace EnemyData {
     public class EnemyFlowerData : MonoBehaviour, IEnemyData {
-        [SerializeField] private BaseEnemyData _baseEnemyData;
+        [FormerlySerializedAs("_baseEnemyData")] [SerializeField] private EnemyTypeData enemyTypeData;
         [SerializeField] private BaseHealerData _baseHealerData;
         [SerializeField] string prefabPath;
         
-        public BaseEnemyData Data => _baseEnemyData;
+        public EnemyTypeData TypeData => enemyTypeData;
 
         public BaseHealerData HealingData => _baseHealerData;
         public string PrefabPath => prefabPath;

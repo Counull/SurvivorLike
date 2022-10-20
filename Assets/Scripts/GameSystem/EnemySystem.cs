@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Behavior;
+using EnemyData;
 using Models;
 using QFramework;
 using UnityEngine;
@@ -10,12 +11,12 @@ namespace GameSystem {
         private List<float> spawnRnadom;
 
         protected override void OnInit() {
-            IEnumerator autoSpawnEnemy = AutoSpawnEnemy();
+      
         }
 
 
         public void StartSpanEnemy() {
-            var enemyList = this.GetModel<EnemyModel>().enemyData.Value;
+            var enemyList = this.GetModel<EnemyModel>().enemyTypeData.Value;
 
             spawnRnadom = new List<float>(enemyList.Count);
             float total = 0.0f;
@@ -40,14 +41,21 @@ namespace GameSystem {
         }
 
 
-        public void SpawnEnemyRandomPosition(int index) {
+        public void SpawnEnemyRandomPosition(int type) {
             var playerModel = this.GetModel<PlayerModel>();
             Vector2 randomPosition = (Vector2) playerModel.playerPosition.Value +
                                      RandomPosition(playerModel.cleanAreaSqr, playerModel.enemySpawnArea);
             var enemyModel = this.GetModel<EnemyModel>();
-            var enemy = Object.Instantiate(enemyModel.enemyData.Value[index].Prefab, randomPosition,
+            var enemyTypeData = enemyModel.enemyTypeData.Value[type];
+            var enemy = Object.Instantiate(enemyTypeData.Prefab, randomPosition,
                 Quaternion.identity);
-            enemy.GetComponent<EnemyBehavior>().Init(index);
+            var status = new EnemyStatusData {
+                CurrentHealth = enemyTypeData.Health,
+                GameObject = enemy
+            };
+            enemyModel.statusData.Add(enemy.GetInstanceID(), status);
+
+            enemy.GetComponent<EnemyBehavior>().Init(type);
         }
 
         Vector2 RandomPosition(float cleanAreaSqr, float enemySpawnArea) {
@@ -62,8 +70,10 @@ namespace GameSystem {
 
 
         IEnumerator AutoSpawnEnemy() {
+            int index = 0;
             while (true) {
                 RandomSpawnEnemy();
+                index++;
                 yield return new WaitForSeconds(2);
             }
         }

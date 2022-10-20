@@ -76,15 +76,15 @@ namespace Command {
 
             float total = 0.0f;
             foreach (var vEnemyData in _enemyData) {
-                total += vEnemyData.Data.SpawnRatio;
+                total += vEnemyData.TypeData.SpawnRatio;
             }
 
             foreach (var vEnemyData in _enemyData) {
-                var baseEnemyData = vEnemyData.Data;
+                var baseEnemyData = vEnemyData.TypeData;
                 var prefab = Resources.Load<GameObject>(vEnemyData.PrefabPath);
                 baseEnemyData.Prefab = prefab;
-                enemyModel.enemyData.Value.Add(baseEnemyData);
-                vEnemyData.Data.SpawnRatio /= total;
+                enemyModel.enemyTypeData.Value.Add(baseEnemyData);
+                vEnemyData.TypeData.SpawnRatio /= total;
                 vEnemyData.Destroy();
             }
         }
